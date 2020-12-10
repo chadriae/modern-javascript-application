@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  font-family: "Raleway", sans-serif;
+  background-color: rgba(255, 255, 255, 0.2);
+  background-blend-mode: lighten;
+  color: white;
+}
+
+.container {
+  text-align: center;
+  padding: 10px;
+  background-color: rgba(60, 98, 168, 0.664);
+  min-width: 40vh;
+  max-width: 100vh;
+  height: auto;
+}
+
+#run:hover {
+  cursor: pointer;
+}
+
+.city {
+  color: black;
+}
+
+.location {
+  text-align: left;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    max-width: 30vh;
+  }
+  .location,
+  #temperatureDayZero,
+  #descrDayZero {
+    text-align: center;
+    font-size: x-large;
+  }
+  #date {
+    display: none;
+  }
+  #timeNow {
+    display: none;
+  }
+  #dayZero,
+  #dayOne,
+  #dayTwo,
+  #dayThree,
+  #dayFour {
+    display: inline-block;
+    width: 30vh;
+  }
+  #imgTemp0,
+  #imgDayOne,
+  #imgDayTwo,
+  #imgDayThree,
+  #imgDayFour {
+    display: inline-block;
+  }
+  #form {
+    display: block;
+  }
+}
+
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */
