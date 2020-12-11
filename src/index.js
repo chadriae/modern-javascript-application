@@ -10,6 +10,29 @@ const currentCity = document.querySelector("#autocomplete");
 const cityLocation = document.querySelector(".location");
 const cityCoordinates = document.querySelector(".coordinates");
 
+
+// action="https://random.country/capital"
+document.querySelector("#capital").addEventListener("click", () =>{
+    // const url = "https://random.country/capital/index.html";
+    // fetch (url)
+    //     .then(response => response.text())
+    //     .then(data => {
+    //         console.log(data);
+    //     })
+    //     .catch (err => console.log(err));
+
+    const url2 = 'https://github.com/Ginden/capitals/blob/master/africa.json';
+    fetch(url2)
+        .then(res => res.text())
+        .then(text => {
+            console.log(text);
+        })
+        .catch(err => console.log(err));
+})
+
+
+
+
 // Use enter key for submitting
 currentCity.addEventListener("keyup", (event) => {
     if (event.key == "Enter") {

@@ -1,16 +1,12 @@
 # Title: Anatomy of a Modern JavaScript Application
 
-- Repository: `modern-javascript-application`
-- Type of Challenge: `learning`
-- Duration: `5 days`
-- Deployment strategy: `Github pages`
-- Team challenge : `solo`
-- Author: `Manuele`
+Link to the [original repo.](https://github.com/becodeorg/gnt-verou-1-26/tree/master/2.The-Hill/4.Anatomy-of-a-modern-javascript-application)
 
-## Learning Objectives
+## Objectives
 
-You now know JavaScript well enough to write simple and complex frontend applications, and querying an API as well. You know the language, and you know its power, but something is still missing. The code seems convoluted and all over the place. Is this really how established developers work, you may wonder?  
-At the end of this challenge you will:
+Building further on the [weather app](https://chadriae.github.io/weather-app/), which was based on Vanilla JS, we built further to make it a more modern javascript application.
+
+A summary of the objectives learnt in this exercise:
 
 - be able to organize your code with multiple functions
 - be able to organize your code in multiple files
@@ -18,54 +14,13 @@ At the end of this challenge you will:
 - be able to use linters and formatters to make your code cleaner and more bug-free
 - be able to optimize your code to be shipped to a browser faster
 
-## Your mission
+Each of these were divided in steps, a more detailed summary in the next chapter.
 
-> It's Monday morning. I sit at my desk, start the computer, and my two screens light up.
->
-> I open up my text editor and the terminal in the first screen. I type two simple words in the terminal: `npm start` and press <kbd>ENTER</kbd>. A few seconds later a browser tab launches in the second screen with a local server where I can see the application as I develop it.
->
-> I need to add a small new feature. I already have the code in my head, and start typing it out. Before I even save, a red squiggly line under a piece of recent code alerts me that there is a problem, and suggests a fix. I accept the fix, which is automatically applied to my code. Phew, that would have taken 30 minutes of my time to find and fix manually.
->
-> I realize that I need to work with dates in this new feature, and dates are tricky. Fortunately, there is a library that makes it easier. I type `npm install --save date-fns`, add a line to the top of my file to import such library, and voilà, I'm good to go!
->
-> I keep typing, instantly solve two more problems, and hit Save. I'm not the best at keeping my code tidy and well indented, but my text editor is set to auto-format the code on save. Awesome, I don't even have to think about it and there I have my variables well aligned, my functions well indented, my nested conditionals well laid out. It's so much easier to read now.
->
-> I now see that I could organize my code a little better, and that I could add an additional explanation for future me in a comment. I save again.
->
-> I glance at my second screen. I haven't touched a thing since hitting Save, but the tab is automatically reloading with the new code applied. I watch the app load under my eyes, and I can immediately test it. Wow. That was a breeze, the new feature works!
->
-> I type `npm build` in the terminal and all my SASS and JS is bundled, optimized and minified, ready to ship to the browser with optimal performance. Development never felt better.
+## Steps
 
-If you also find this vision of a happy future enticing read on, and reach coding Nirvana in 5 days 😎
-
-## Instructions
-
-There will be a lot to take here. It's a lot of so-called _tooling_ that doesn't impact functionality directly, but it can improve several areas of development immensely.  
-Let's take this short journey step by step, day by day.
-
-### Day 1 - Refactor
-
-1. Copy all your files over from the Weather App
-2. Take your existing `script.js` from the Weather App, and reorganize (_refactor_) the code in as many functions as you can (try to have at least 2-3 functions). Do it one step at a time: you can start from the outside and go in, or from the inside out. A few principles to keep in mind:
-   - Functions should do one thing
-   - Function names should say what they do
-   - Avoid side effects (keep as many functions as possible [_pure_](https://www.notion.so/mjsarfatti/Enough-JS-to-Be-Dangerous-d3be5beb31ad4778ada7161fb2cc1a7b#5bada0ad2ac84f56a84871dbfa28f714))
-   - Functions can often be just a few lines long
-3. There is no 3! That's all for day 1 :) If you want to know more about good practices, take a peek here (but don't stress too much, some of that stuff is quite advanced): https://github.com/ryanmcdermott/clean-code-javascript#functions
-
-_Do you have time to spare? See if you can help someone, add "nice-to-have" features to your app, or refactor another app of yours!_
-
-### Day 2 - JavaScript Modules
-
-It's a lot of functions, in a long file. Guess what? In modern JavaScript, you can divide your code into multiple files for better organization, and import/export things (functions, variables, classes) from one file to another.
-
-1. Divide your code into multiple files. If you don't know how, start with one function per file and name the file after the function. Don't worry about exporting/importing, for now just make a file structure that kind of makes sense and reflects your code.  
-   _Just remember: keep `script.js` around, it will still be the origin file for everything_
-2. Done? Now rename `script.js` to `index.js` - this is an industry convention and it ensures better compatibility with several tools (you'll see 😉)
-3. Read up about "ES6 Modules" and the "ES6 import/export syntax"  
-   _Note: If tutorials or guides talk about `npm`, or ask you to add a `package.json` to your project, or ask you to run `$ npm install somethingsomething` ignore them, we'll see all that in two days. Find out how to use "modules" in the browser directly._
-4. Apply the import/export syntax to your JavaScript code. Don't forget to update your `index.html` as necessary since the previous way of including JavaScript will not work anymore (hint: you'll need to add `type="module"` somewhere)
-
-## Good luck!
-
-![](https://media.giphy.com/media/3ohzdCZQsrqHIqgTEk/giphy.gif)
+1. **Refactor** the code in as many functions as possible.
+   I managed to create 6 seperate functions, each with their own function. Some of them are larger than others, so I might have made some smaller for better readibility.
+2. Divide the code into multiple files, export and import them as Javascript **modules**.
+   I had some difficulties at first with the right syntax, some parts broke at first. But I got it working and my code looks more structured.
+3. For browser compatibility, we use a **bundler** on (bigger) Javascript projects.
+   I used the [_Parcel_](https://parceljs.org/getting_started.html) bundler, which went very smooth and easy.

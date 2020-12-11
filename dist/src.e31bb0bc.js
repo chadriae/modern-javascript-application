@@ -178,15 +178,16 @@ var displayClock = function displayClock() {
 
 exports.displayClock = displayClock;
 setInterval(displayClock, 1000);
-},{}],"js/animations.js":[function(require,module,exports) {
+},{}],"js/showtemperature.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.addAnimation = void 0;
+exports.showTemperature = void 0;
+// Function to show temperature according to city
+var daysCount = 5; // Animations
 
-// Animations
 var addAnimation = function addAnimation(weather, index) {
   var imgTemp0 = document.querySelector("#imgTemp0");
   var imgTemp1 = document.querySelector("#imgDayOne");
@@ -217,20 +218,6 @@ var addAnimation = function addAnimation(weather, index) {
       return;
   }
 };
-
-exports.addAnimation = addAnimation;
-},{}],"js/showtemperature.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.showTemperature = void 0;
-
-var _animations = require("./animations.js");
-
-// Function to show temperature according to city
-var daysCount = 5;
 
 var showTemperature = function showTemperature(currentCity) {
   fetch("https://api.weatherbit.io/v2.0/forecast/daily?city=".concat(currentCity, "&key=cbe1db44a04a412ebe4a95a03cba00cd&days=").concat(daysCount)).then(function (response) {
@@ -278,38 +265,38 @@ var showTemperature = function showTemperature(currentCity) {
 
     descriptions.forEach(function (element, index) {
       if (element.includes("sun")) {
-        (0, _animations.addAnimation)("sun", index);
+        addAnimation("sun", index);
       }
 
       if (element.includes("Clear Sky")) {
-        (0, _animations.addAnimation)("sun", index);
+        addAnimation("sun", index);
       }
 
       if (element.includes("rain")) {
-        (0, _animations.addAnimation)("rain", index);
+        addAnimation("rain", index);
       }
 
       if (element.includes("drizzle")) {
-        (0, _animations.addAnimation)("rain", index);
+        addAnimation("rain", index);
       }
 
       if (element.includes("clouds")) {
-        (0, _animations.addAnimation)("clouds", index);
+        addAnimation("clouds", index);
       }
 
       if (element.includes("storm")) {
-        (0, _animations.addAnimation)("storm", index);
+        addAnimation("storm", index);
       }
 
       if (element.includes("snow")) {
-        (0, _animations.addAnimation)("snow", index);
+        addAnimation("snow", index);
       }
     });
   });
 };
 
 exports.showTemperature = showTemperature;
-},{"./animations.js":"js/animations.js"}],"js/changebackground.js":[function(require,module,exports) {
+},{}],"js/changebackground.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -344,7 +331,25 @@ var _changebackground = require("./js/changebackground.js");
 // TODO show last 5 searches
 var currentCity = document.querySelector("#autocomplete");
 var cityLocation = document.querySelector(".location");
-var cityCoordinates = document.querySelector(".coordinates"); // Use enter key for submitting
+var cityCoordinates = document.querySelector(".coordinates"); // action="https://random.country/capital"
+
+document.querySelector("#capital").addEventListener("click", function () {
+  // const url = "https://random.country/capital/index.html";
+  // fetch (url)
+  //     .then(response => response.text())
+  //     .then(data => {
+  //         console.log(data);
+  //     })
+  //     .catch (err => console.log(err));
+  var url2 = 'https://github.com/Ginden/capitals/blob/master/africa.json';
+  fetch(url2).then(function (res) {
+    return res.text();
+  }).then(function (text) {
+    console.log(text);
+  }).catch(function (err) {
+    return console.log(err);
+  });
+}); // Use enter key for submitting
 
 currentCity.addEventListener("keyup", function (event) {
   if (event.key == "Enter") {
@@ -421,7 +426,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58720" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58806" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
