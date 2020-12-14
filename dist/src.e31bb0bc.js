@@ -327,27 +327,30 @@ var _showtemperature = require("./js/showtemperature.js");
 
 var _changebackground = require("./js/changebackground.js");
 
-// TODO line graph chart.js
-// TODO show last 5 searches
+// npm run dev  
+// om op te starten
+// import { randomCapital } from './js/randomcapital.js';
 var currentCity = document.querySelector("#autocomplete");
 var cityLocation = document.querySelector(".location");
-var cityCoordinates = document.querySelector(".coordinates"); // action="https://random.country/capital"
+var cityCoordinates = document.querySelector(".coordinates"); // Fetch weather data of a random capital city
 
 document.querySelector("#capital").addEventListener("click", function () {
-  // const url = "https://random.country/capital/index.html";
-  // fetch (url)
-  //     .then(response => response.text())
-  //     .then(data => {
-  //         console.log(data);
-  //     })
-  //     .catch (err => console.log(err));
-  var url2 = 'https://github.com/Ginden/capitals/blob/master/africa.json';
-  fetch(url2).then(function (res) {
-    return res.text();
-  }).then(function (text) {
-    console.log(text);
-  }).catch(function (err) {
-    return console.log(err);
+  var url = "https://raw.githubusercontent.com/samayo/country-json/master/src/country-by-capital-city.json";
+  fetch(url).then(function (response) {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+
+    return response.json();
+  }).then(function (data) {
+    var randomNumber = Math.floor(Math.random() * data.length);
+    var randomCountry = data[randomNumber]["country"];
+    var randomCapital = data[randomNumber]["city"];
+    cityHTML(randomCapital, randomCountry);
+    (0, _changebackground.changeBackground)(randomCapital);
+    (0, _showtemperature.showTemperature)(randomCapital);
+    (0, _displayclock.displayClock)();
+    (0, _showtemperature.showTemperature)(randomCapital);
   });
 }); // Use enter key for submitting
 
@@ -358,8 +361,12 @@ currentCity.addEventListener("keyup", function (event) {
   }
 }); // Function to change HTML with current city
 
-var cityHTML = function cityHTML(currentCity) {
-  cityLocation.innerHTML = "".concat(currentCity);
+var cityHTML = function cityHTML(currentCity, currentCountry) {
+  if (currentCity != null) {
+    cityLocation.innerHTML = "".concat(currentCity, ", ").concat(currentCountry);
+  } else {
+    console.log("".concat(currentCity, " is not a valid city."));
+  }
 }; // Executions for location of user
 
 
@@ -426,7 +433,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58806" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50981" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -1,36 +1,37 @@
-// TODO line graph chart.js
-// TODO show last 5 searches
+// npm run dev  
+// om op te starten
 
 import { showDate } from './js/showdate.js';
 import { displayClock } from './js/displayclock.js';
 import { showTemperature } from './js/showtemperature.js';
 import { changeBackground } from './js/changebackground.js';
+// import { randomCapital } from './js/randomcapital.js';
 
 const currentCity = document.querySelector("#autocomplete");
 const cityLocation = document.querySelector(".location");
 const cityCoordinates = document.querySelector(".coordinates");
 
-
-// action="https://random.country/capital"
+// Fetch weather data of a random capital city
 document.querySelector("#capital").addEventListener("click", () =>{
-    // const url = "https://random.country/capital/index.html";
-    // fetch (url)
-    //     .then(response => response.text())
-    //     .then(data => {
-    //         console.log(data);
-    //     })
-    //     .catch (err => console.log(err));
-
-    const url2 = 'https://github.com/Ginden/capitals/blob/master/africa.json';
-    fetch(url2)
-        .then(res => res.text())
-        .then(text => {
-            console.log(text);
+    const url = "https://raw.githubusercontent.com/samayo/country-json/master/src/country-by-capital-city.json";
+    fetch(url)
+        .then((response) => {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            return response.json();
         })
-        .catch(err => console.log(err));
+        .then(data => {
+            let randomNumber = Math.floor(Math.random() * data.length);
+            let randomCountry = data[randomNumber]["country"];
+            let randomCapital = data[randomNumber]["city"];
+            cityHTML(randomCapital, randomCountry);
+            changeBackground(randomCapital);
+            showTemperature(randomCapital);
+            displayClock();
+            showTemperature(randomCapital);
+         })
 })
-
-
 
 
 // Use enter key for submitting
@@ -42,8 +43,13 @@ currentCity.addEventListener("keyup", (event) => {
 })
 
 // Function to change HTML with current city
-const cityHTML = (currentCity) => {
-        cityLocation.innerHTML = `${currentCity}`;
+const cityHTML = (currentCity, currentCountry) => {
+    if (currentCity != null){
+        cityLocation.innerHTML = `${currentCity}, ${currentCountry}`;
+    }
+    else {
+        console.log(`${currentCity} is not a valid city.`)
+    }
 }
 
 // Executions for location of user
